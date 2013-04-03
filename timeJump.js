@@ -44,11 +44,13 @@
           t.toString().replace('/','').match(/\d+/g)
       );
       var media = document.querySelector('audio, video');
-      media.setAttribute('preload','true');
-      media.addEventListener('loadedmetadata', function(){
-          this.currentTime = timestamp;
-          this.play();
-      }, false );
+      if(!!media) {
+        media.setAttribute('preload','true');
+        media.addEventListener('loadedmetadata', function(){
+            this.currentTime = timestamp;
+            this.play();
+        }, false );
+      }
   }
 
 })();
