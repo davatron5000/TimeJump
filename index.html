@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>TimeJump – Deep-linking for Podcasts</title>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,900' rel='stylesheet' type='text/css'>
+
+    <style type="text/css">
+        body {
+            position:relative;
+            padding: 1.5em 0;
+            margin: 0;
+            background: black;
+            height:100%;
+            color: #fff;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 400;
+            line-height: 1.5;
+            font-size: 100%;
+        }
+        canvas {
+            position: fixed;
+            top:0;
+            left:0;
+            height:100%;
+            width:100%;
+            z-index: -1;
+        }
+
+        h1, h2, h3 {
+            font-weight: 900;
+            text-align: center;
+            line-height: 1;
+            margin: 0 0 0.5em;
+            text-transform: uppercase;
+        }
+
+        .container {
+            max-width: 40em;
+            margin: 0 auto;
+            width: 92%;
+        }
+
+        .page-header {
+            margin-bottom: 2em;
+        }
+
+        h1 {
+            font-size: 4.5em;
+            margin-bottom: 0;
+
+        }
+
+        h2 {
+            font-size: 1.8em;
+        }
+
+        ul, p, pre {
+            margin-bottom: 2em;
+        }
+
+        pre, code {
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 3px;
+        }
+
+        pre > code {
+            border: none;
+        }
+
+        pre {
+            background: rgba(255,255,255,0.075);
+            padding: 0.5em;
+            overflow-x: scroll;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        a {
+            color: white;
+            -webkit-transition: color 0.2s ease-in;
+            -moz-transition: color 0.2s ease-in;
+            -o-transition: color 0.2s ease-in;
+            transition: color 0.2s ease-in;
+        }
+        a:hover,
+        a:focus {
+            color: #09c;
+        }
+
+        .page-content {
+            margin-bottom: 6em;
+        }
+
+        .page-content section {
+            margin-bottom: 3em;
+            display: block;
+        }
+
+        @media (min-width: 40em) {
+            body {
+                padding: 3em 0;
+            }
+            h1 {
+                font-size: 7.5em;
+                margin-bottom: 0;
+            }
+
+            .page-header {
+                margin-bottom: 3em;
+            }
+
+            ul, p, pre {
+                font-size: 1.2em;
+                margin-bottom: 1.5em;
+            }
+
+            ul {
+                padding: 0;
+                list-style-type: none;
+                -webkit-column-count:2;
+                -moz-column-count: 2;
+                -o-column-count: 2;
+                -ms-column-count: 2;
+                column-count: 2;
+            }
+            .page-content section {
+                margin-bottom: 4.5em;
+            }
+        }
+    </style>
+<style>#forkongithub a{background:#09c;color:#fff;text-decoration:none;text-align:center;padding:5px 40px;font-size:1rem;line-height:2rem;position:relative;transition:0.5s; margin: 0 auto; display: block; max-width: 10em;}
+    #forkongithub a:hover{background:#09c;color:#fff;}
+    @media screen and (min-width:40em){
+        #forkongithub{position:absolute;display:block;top:-20px;right:0;width:200px;overflow:hidden;height:200px; max-width: auto;}
+        #forkongithub a{width:200px;position:absolute;top:60px;right:-60px;transform:rotate(45deg);-webkit-transform:rotate(45deg);box-shadow:4px 4px 10px rgba(0,0,0,0.8);}
+    }</style>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<body>
+<canvas style="display:none" id="canvas" width="285" height="285"></canvas>
+<canvas style="display:none" id="canvas3" width="570" height="570"></canvas>
+<canvas id="canvas2" width="570" height="570">*** THIS BROWSER DOES NOT SUPPORT THE CANVAS ELEMENT ***</canvas>
+
+<div class="container">
+    <header class='page-header'>
+        <h1>TIME&#8203;JUMP</h1>
+        <h2>Deep-links for Podcasts</h2>
+        <span id="forkongithub"><a href="https://github.com/davatron5000/timejump">Fork me on GitHub</a></span>
+    </header>
+    <article class="page-content">
+        <section>
+            <p>TimeJump adds deep-linking capabilities to HTML5 <code>audio</code> and <code>video</code> podcasts. It works behind-the-scenes to create a standardized API for seeking, based off the YouTube deep-linking syntax.</p>
+        </section>
+        <section>
+            <h2>How it works</h2>
+            <p>TimeJump sniffs out a <code>t</code> (time) query parameter. If it the query parameter, TimeJump will attempt to fast-forward the podcast to the specified timeframe.</p>
+
+            <pre><code>http://mypodca.st/2004/09/first-episode/?t=1h23m45s
+http://mypodca.st/2004/09/first-episode/?t=1m23s
+http://mypodca.st/2004/09/first-episode/?t=1:23</code></pre>
+        </section>
+        <section>
+            <h2>Who’s using it?</h2>
+            <p>You don’t have to wait to TimeJump! TimeJump is currently being employed on the following ground-breaking podcasts:</p>
+            <ul>
+                <li><a href="http://shoptalkshow.com">ShopTalk</a></li>
+                <li><a href="http://atxwebshow.com">The ATX Web Show</a></li>
+                <li>YOUR PODCAST HERE</li>
+                <li>YOUR PODCAST HERE</li>
+            </ul>
+        </section>
+    </article>
+
+    <footer class="page-footer" role="content-info">
+    <p>Made with ❤ by <a href="http://paravelinc.com">Paravel</a> &amp; <a href="http://css-tricks.com">Chris Coyier</a></p>
+    <footeR>
+</div>
+
+<script type="text/javascript">
+//////////////////////////////////////////////////////////////////////////////////
+// A demonstration of a Canvas nebula effect
+// (c) 2010 by R Cecco. <http://www.professorcloud.com>
+// MIT License
+//
+// Please retain this copyright header in all versions of the software if
+// using significant parts of it
+//////////////////////////////////////////////////////////////////////////////////
+
+$(document).ready(function(){
+    // shim layer with setTimeout fallback
+    window.requestAnimFrame = (function(){
+      return  window.requestAnimationFrame       ||
+              window.webkitRequestAnimationFrame ||
+              window.mozRequestAnimationFrame    ||
+              function( callback ){
+                window.setTimeout(callback, 1000 / 60);
+              };
+    })();
+    (function ($) {
+            // The canvas element we are drawing into.
+            var $canvas = $('#canvas');
+            var $canvas2 = $('#canvas2');
+            var $canvas3 = $('#canvas3');
+            var ctx2 = $canvas2[0].getContext('2d');
+            var ctx = $canvas[0].getContext('2d');
+            var w = $canvas[0].width, h = $canvas[0].height;
+            var w = window.innerWidth, h = window.innerHeight;
+            var img = new Image();
+
+            // A puff.
+            var Puff = function(p) {
+                // var amtX = (window.innerWidth / 2);
+                // var amtY = (window.innerHeight / 2);
+                var opacity,
+                    sy = (Math.random()*285)>>0,
+                    sx = (Math.random()*285)>>0;
+
+                this.p = p;
+
+                this.move = function(timeFac) {
+                    p = this.p + 0.3 * timeFac;
+                    opacity = (Math.sin(p*0.05)*0.5);
+                    if(opacity <0) {
+                        p = opacity = 0;
+                        sy = (Math.random()*285)>>0;
+                        sx = (Math.random()*285)>>0;
+                    }
+                    this.p = p;
+                    ctx.globalAlpha = opacity;
+                    ctx.drawImage($canvas3[0], sy+p, sy+p, 285-(p*2),285-(p*2), 0,0, w, h);
+                };
+            };
+
+            var puffs = [];
+            var sortPuff = function(p1,p2) { return p1.p-p2.p; };
+            puffs.push( new Puff(0) );
+            puffs.push( new Puff(20) );
+            puffs.push( new Puff(40) );
+
+            var newTime, oldTime = 0, timeFac;
+
+            var loop = function() {
+                newTime = new Date().getTime();
+                if(oldTime === 0 ) {
+                    oldTime=newTime;
+                }
+                timeFac = (newTime-oldTime) * 0.1;
+                if(timeFac>3) {timeFac=3;}
+                oldTime = newTime;
+                puffs.sort(sortPuff);
+
+                for(var i=0;i<puffs.length;i++)
+                {
+                    puffs[i].move(timeFac/2.5);
+                }
+                ctx2.drawImage( $canvas[0] ,0,0, 570,570);
+                requestAnimFrame(loop);
+            };
+            // Turns out Chrome is much faster doing bitmap work if the bitmap is in an existing canvas rather
+            // than an IMG, VIDEO etc. So draw the big nebula image into canvas3
+            var $canvas3 = $('#canvas3');
+            var ctx3 = $canvas3[0].getContext('2d');
+            $(img).bind('load',null, function() {  ctx3.drawImage(img, 0,0, 570,570);  loop(); });
+            img.src = 'nebula.jpg';
+
+    })(jQuery);
+});
+</script>
+</body>
+</html>
