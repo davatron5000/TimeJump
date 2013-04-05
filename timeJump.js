@@ -47,7 +47,7 @@
         var media = document.querySelector('audio, video');
         if ( !! media) {
             media.setAttribute('preload', 'true');
-            media.addEventListener('loadedmetadata', function () {
+            media.addEventListener('canplay', function () {
                 this.currentTime = timestamp;
                 this.play();
             }, false);
