@@ -15,42 +15,44 @@
 *                   ##:## (minutes, seconds)
 *                   ## (seconds)
 */
-(function(){
+(function () {
 
-  function getQueryVariable(variable) {
-     var query = window.location.search.substring(1);
-     var vars = query.split("&");
-     for (var i=0;i<vars.length;i++) {
-             var pair = vars[i].split("=");
-             if(pair[0] == variable){return pair[1];}
-     }
-     return(false);
-  }
+    function getQueryVariable(variable) {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split("=");
+            if (pair[0] == variable) {
+                return pair[1];
+            }
+        }
+        return (false);
+    }
 
-  function getSeconds( time ) {
-      if(time.length === 3) {
-          return parseInt(time[0], 10) * 3600 + parseInt(time[1], 10) * 60 + parseInt(time[2], 10);
-      } else if(time.length === 2) {
-          return parseInt(time[0], 10) * 60 + parseInt(time[1], 10);
-      } else {
-          return parseInt(time[0], 10);
-      }
-  }
+    function getSeconds(time) {
+        if (time.length === 3) {
+            return parseInt(time[0], 10) * 3600 + parseInt(time[1], 10) * 60 + parseInt(time[2], 10);
+        } else if (time.length === 2) {
+            return parseInt(time[0], 10) * 60 + parseInt(time[1], 10);
+        } else {
+            return parseInt(time[0], 10);
+        }
+    }
 
-  var t = getQueryVariable('t') || 0;
+    var t = getQueryVariable('t') || 0;
 
-  if(t) {
-      var timestamp = getSeconds(
-          t.toString().replace('/','').match(/\d+/g)
-      );
-      var media = document.querySelector('audio, video');
-      if(!!media) {
-        media.setAttribute('preload','true');
-        media.addEventListener('loadedmetadata', function(){
-            this.currentTime = timestamp;
-            this.play();
-        }, false );
-      }
-  }
+    if (t) {
+        var timestamp = getSeconds(
+            t.toString().replace('/', '').match(/\d+/g));
+        var media = document.querySelector('audio, video');
+        if ( !! media) {
+            media.setAttribute('preload', 'true');
+            media.addEventListener('loadedmetadata', function () {
+                this.currentTime = timestamp;
+                this.play();
+            }, false);
+        }
+    }
 
 })();
+
