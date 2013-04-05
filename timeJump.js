@@ -26,17 +26,7 @@
                 return pair[1];
             }
         }
-        return (false);
-    }
-
-    function getSeconds(time) {
-        if (time.length === 3) {
-            return parseInt(time[0], 10) * 3600 + parseInt(time[1], 10) * 60 + parseInt(time[2], 10);
-        } else if (time.length === 2) {
-            return parseInt(time[0], 10) * 60 + parseInt(time[1], 10);
-        } else {
-            return parseInt(time[0], 10);
-        }
+        return false;
     }
 
     /**
@@ -46,28 +36,31 @@
      */
     function parseTime(str) {
         var plain = /^\d+$/g,
-            npt = /^(?:npt:)?(?:(\d\d?):)?(?:(\d\d?):)?(\d\d?)(.\d+)?$/,
-	    quirks = /^(?:(\d\d?)[hH])?(?:(\d\d?)[mM])?(\d\d?)[sS]$/,
-	    match;
+            npt = /^(?:npt:)?(?:(?:(\d\d?):)?(\d\d?):)?(\d\d?)(.\d+)?$/,
+            quirks = /^(?:(\d\d?)[hH])?(?:(\d\d?)[mM])?(\d\d?)[sS]$/,
+            match;
 
-	if( plain.test(str)) return ~~str;
+        if (plain.test(str)) return~~ str;
 
-	if( match = npt.exec(str) || quirks.exec( str)){
-console.log(match)
-	    return 3600 * ~~match[1] + 60 * ~~match[2] + ~~match[3] + (+match[4]); 
+        if (match = npt.exec(str) || quirks.exec(str)) {
+            return 3600 * ~~match[1] + 60 * ~~match[2] + ~~match[3] + (+match[4] || 0);
         }
-	return 0;
+        return 0;
     }
 
     var t = getQueryVariable('t') || 0;
 
     if (t) {
-        var timestamp = getSeconds(
-            t.toString().replace('/', '').match(/\d+/g));
+        var timestamp = parseTime(t );
+        //getSeconds( t.toString().replace('/', '').match(/\d+/g));
         var media = document.querySelector('audio, video');
         if ( !! media) {
             media.setAttribute('preload', 'true');
             media.addEventListener('canplay', function () {
+                /* only start the player if it is not already playing */
+                if( !this.paused){
+                    return;
+                }
                 this.currentTime = timestamp;
                 this.play();
             }, false);
@@ -75,4 +68,3 @@ console.log(match)
     }
 
 })();
-
