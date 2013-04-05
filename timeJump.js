@@ -39,6 +39,26 @@
         }
     }
 
+    /**
+     * parseTime(str)
+     * @param str A timecode
+     * @returns the time in seconds 
+     */
+    function parseTime(str) {
+        var plain = /^\d+$/g,
+            npt = /^(?:npt:)?(?:(\d\d?):)?(?:(\d\d?):)?(\d\d?)(.\d+)?$/,
+	    quirks = /^(?:(\d\d?)[hH])?(?:(\d\d?)[mM])?(\d\d?)[sS]$/,
+	    match;
+
+	if( plain.test(str)) return ~~str;
+
+	if( match = npt.exec(str) || quirks.exec( str)){
+console.log(match)
+	    return 3600 * ~~match[1] + 60 * ~~match[2] + ~~match[3] + (+match[4]); 
+        }
+	return 0;
+    }
+
     var t = getQueryVariable('t') || 0;
 
     if (t) {
