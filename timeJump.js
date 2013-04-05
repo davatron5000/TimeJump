@@ -17,15 +17,11 @@
 */
 (function () {
 
-    function getQueryVariable(variable) {
-        var query = window.location.search.substring(1);
-        var vars = query.split("&");
-        for (var i = 0; i < vars.length; i++) {
-            var pair = vars[i].split("=");
-            if (pair[0] == variable) {
-                return pair[1];
-            }
-        }
+    function getQueryVariable() {
+        var regex = /\bt=([\dhHmMsS.:]*)(?:,([\dhHmMsS.:]+))?\b/g,
+            match = regex.exec(location.search) || regex.exec(location.hash);
+
+        if (match) return match[1];
         return false;
     }
 
@@ -48,7 +44,7 @@
         return 0;
     }
 
-    var t = getQueryVariable('t') || 0;
+    var t = getQueryVariable() || 0;
 
     if (t) {
         var timestamp = parseTime(t);
