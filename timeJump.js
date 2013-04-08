@@ -21,7 +21,7 @@
     "use strict";
     var getQueryVariable = function() {
         var regex = /\bt=([\dhHmMsS.:]*)(?:,([\dhHmMsS.:]+))?\b/g,
-            match = regex.exec(location.search) || regex.exec(location.hash);
+            match = regex.exec(location.hash) || regex.exec(location.search);
         if (match) {
             return match[1];
         }
@@ -31,7 +31,7 @@
     /**
      * parseTime(str)
      * @param str A timecode
-     * @returns the time in seconds 
+     * @returns the time in seconds
      */
     var parseTime = function(str) {
         var plain = /^\d+$/g,
@@ -74,6 +74,6 @@
         window.addEventListener("hashchange", timeJump, false);
     }
     else if (window.attachEvent) {
-        window.attachEvent("onhashchange", timeJump);    
+        window.attachEvent("onhashchange", timeJump);
     }
 }());
