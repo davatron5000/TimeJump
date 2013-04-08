@@ -15,51 +15,65 @@
 *                   ##:## (minutes, seconds)
 *                   ## (seconds)
 */
-(function () {
+/*jslint browser: true*/
 
-    function getQueryVariable() {
+(function timeJump() {
+    "use strict";
+    var getQueryVariable = function() {
         var regex = /\bt=([\dhHmMsS.:]*)(?:,([\dhHmMsS.:]+))?\b/g,
             match = regex.exec(location.search) || regex.exec(location.hash);
-
-        if (match) return match[1];
+        if (match) {
+            return match[1];
+        }
         return false;
-    }
+    };
 
     /**
      * parseTime(str)
      * @param str A timecode
      * @returns the time in seconds 
      */
-    function parseTime(str) {
+    var parseTime = function(str) {
         var plain = /^\d+$/g,
-            npt = /^(?:npt:)?(?:(?:(\d\d?):)?(\d\d?):)?(\d\d?)(.\d+)?$/,
+            npt = /^(?:npt:)?(?:(?:(\d\d?):)?(\d\d?):)?(\d\d?)(\.\d+)?$/,
             quirks = /^(?:(\d\d?)[hH])?(?:(\d\d?)[mM])?(\d\d?)[sS]$/,
             match;
-
-        if (plain.test(str)) return ~~str;
-
-        if (match = npt.exec(str) || quirks.exec(str)) {
-            return 3600 * ~~match[1] + 60 * ~~match[2] + ~~match[3] + (+match[4] || 0);
+        if (plain.test(str)) {
+            return parseInt(str,10);
+        }
+        match = npt.exec(str) || quirks.exec(str);
+        if (match) {
+            return (3600 * (parseInt(match[1],10) || 0) + 60 * (parseInt(match[2],10) || 0) + parseInt(match[3],10) + (parseInt(match[4],10) || 0));
         }
         return 0;
-    }
+    };
 
-    var t = getQueryVariable() || 0;
-
+    var timestamp,
+        media,
+        t = getQueryVariable() || 0;
     if (t) {
-        var timestamp = parseTime(t);
-        var media = document.querySelector('audio, video');
-        if ( !!media) {
+        timestamp = parseTime(t);
+        media = document.querySelector('audio, video');
+        if (!!media) {
             media.setAttribute('preload', 'true');
             media.addEventListener('canplay', function () {
                 /* only start the player if it is not already playing */
                 if( !this.paused){
-                    return;
+                    return false;
                 }
                 this.currentTime = timestamp;
                 this.play();
             }, false);
+            if(!media.paused) {
+                media.currentTime = timestamp;
+            }
         }
     }
 
-})();
+    if (window.addEventListener) {
+        window.addEventListener("hashchange", timeJump, false);
+    }
+    else if (window.attachEvent) {
+        window.attachEvent("onhashchange", timeJump);    
+    }
+}());
