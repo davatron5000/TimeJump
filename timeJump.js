@@ -34,16 +34,16 @@
      * @returns the time in seconds
      */
     var parseTime = function(str) {
-        var plain = /^\d+$/g,
-            npt = /^(?:npt:)?(?:(?:(\d\d?):)?(\d\d?):)?(\d\d?)(\.\d+)?$/,
+        var plain = /^\d+(\.\d+)?$/g,
+            npt = /^(?:npt:)?(?:(?:(\d+):)?(\d\d?):)?(\d\d?)(\.\d+)?$/,
             quirks = /^(?:(\d\d?)[hH])?(?:(\d\d?)[mM])?(\d\d?)[sS]$/,
             match;
         if (plain.test(str)) {
-            return parseInt(str,10);
+            return parseFloat(str);
         }
         match = npt.exec(str) || quirks.exec(str);
         if (match) {
-            return (3600 * (parseInt(match[1],10) || 0) + 60 * (parseInt(match[2],10) || 0) + parseInt(match[3],10) + (parseInt(match[4],10) || 0));
+            return (3600 * (parseInt(match[1],10) || 0) + 60 * (parseInt(match[2],10) || 0) + parseInt(match[3],10) + (parseFloat(match[4]) || 0));
         }
         return 0;
     };
