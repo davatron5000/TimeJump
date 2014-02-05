@@ -1,0 +1,151 @@
+body {
+    position:relative;
+    padding: 1.5em 0;
+    margin: 0;
+    background: black;
+    height:100%;
+    color: #fff;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    font-size: 100%;
+}
+body.danmode {
+    background: white;
+    color: black;
+}
+canvas {
+    position: fixed;
+    top:0;
+    left:0;
+    height:100%;
+    width:100%;
+    z-index: -1;
+}
+body.danmode canvas {
+    display: none!important;
+}
+h1, h2, h3 {
+    font-weight: 900;
+    text-align: center;
+    line-height: 1;
+    margin: 0 0 0.5em;
+    text-transform: uppercase;
+}
+
+.container {
+    max-width: 40em;
+    margin: 0 auto;
+    width: 92%;
+}
+
+.page-header {
+    margin-bottom: 2em;
+}
+
+h1 {
+    font-size: 4.5em;
+    margin-bottom: 0;
+
+}
+
+h2 {
+    font-size: 1.8em;
+}
+
+ul, p, pre {
+    margin-bottom: 2em;
+}
+
+pre, code {
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 3px;
+}
+
+pre > code {
+    border: none;
+}
+
+pre {
+    background: rgba(255,255,255,0.075);
+    padding: 0.5em;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+a {
+    color: white;
+    -webkit-transition: color 0.2s ease-in;
+    -moz-transition: color 0.2s ease-in;
+    -o-transition: color 0.2s ease-in;
+    transition: color 0.2s ease-in;
+}
+a:hover,
+a:focus {
+    color: #09c;
+}
+body.danmode a {
+    color: #09c;
+}
+body.danmode a:hover,
+body.danmode a:focus {
+    color: #069;
+}
+audio {
+    width: 100%;
+}
+.page-content {
+    margin-bottom: 6em;
+}
+
+.page-content section {
+    margin-bottom: 3em;
+    display: block;
+}
+
+footer {
+    text-align: center;
+}
+
+@media (min-width: 40em) {
+    body {
+        padding: 3em 0;
+    }
+    h1 {
+        font-size: 7.5em;
+        margin-bottom: 0;
+    }
+
+    .page-header {
+        margin-bottom: 3em;
+    }
+
+    ul, p, pre {
+        font-size: 1.2em;
+        margin-bottom: 1.5em;
+    }
+
+    ul {
+        padding: 0;
+        list-style-type: none;
+        -webkit-column-count:2;
+        -moz-column-count: 2;
+        -o-column-count: 2;
+        -ms-column-count: 2;
+        column-count: 2;
+    }
+    .page-content section {
+        margin-bottom: 4.5em;
+    }
+}
+
+#forkongithub a{
+    background:#09c;color:#fff;text-decoration:none;text-align:center;padding:5px 40px;font-size:1rem;line-height:2rem;position:relative;transition:0.5s; margin: 0 auto; display: block; max-width: 10em;
+    }
+    #forkongithub a:hover{
+        background:#08b;color:#fff;
+    }
+    @media screen and (min-width:40em){
+        #forkongithub{position:absolute;display:block;top:-20px;right:0;width:200px;overflow:hidden;height:200px; max-width: auto;}
+        #forkongithub a{width:200px;position:absolute;top:60px;right:-60px;transform:rotate(45deg);-webkit-transform:rotate(45deg);box-shadow:4px 4px 10px rgba(0,0,0,0.8);}
+    }

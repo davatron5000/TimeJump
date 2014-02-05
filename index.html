@@ -4,137 +4,7 @@
     <meta charset="utf-8"/>
     <title>TimeJump – Deep linking for Podcasts</title>
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,900' rel='stylesheet' type='text/css'>
-
-    <style type="text/css">
-        body {
-            position:relative;
-            padding: 1.5em 0;
-            margin: 0;
-            background: black;
-            height:100%;
-            color: #fff;
-            font-family: 'Raleway', sans-serif;
-            font-weight: 400;
-            line-height: 1.5;
-            font-size: 100%;
-        }
-        canvas {
-            position: fixed;
-            top:0;
-            left:0;
-            height:100%;
-            width:100%;
-            z-index: -1;
-        }
-
-        h1, h2, h3 {
-            font-weight: 900;
-            text-align: center;
-            line-height: 1;
-            margin: 0 0 0.5em;
-            text-transform: uppercase;
-        }
-
-        .container {
-            max-width: 40em;
-            margin: 0 auto;
-            width: 92%;
-        }
-
-        .page-header {
-            margin-bottom: 2em;
-        }
-
-        h1 {
-            font-size: 4.5em;
-            margin-bottom: 0;
-
-        }
-
-        h2 {
-            font-size: 1.8em;
-        }
-
-        ul, p, pre {
-            margin-bottom: 2em;
-        }
-
-        pre, code {
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 3px;
-        }
-
-        pre > code {
-            border: none;
-        }
-
-        pre {
-            background: rgba(255,255,255,0.075);
-            padding: 0.5em;
-            overflow-x: scroll;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        a {
-            color: white;
-            -webkit-transition: color 0.2s ease-in;
-            -moz-transition: color 0.2s ease-in;
-            -o-transition: color 0.2s ease-in;
-            transition: color 0.2s ease-in;
-        }
-        a:hover,
-        a:focus {
-            color: #09c;
-        }
-
-        .page-content {
-            margin-bottom: 6em;
-        }
-
-        .page-content section {
-            margin-bottom: 3em;
-            display: block;
-        }
-
-        @media (min-width: 40em) {
-            body {
-                padding: 3em 0;
-            }
-            h1 {
-                font-size: 7.5em;
-                margin-bottom: 0;
-            }
-
-            .page-header {
-                margin-bottom: 3em;
-            }
-
-            ul, p, pre {
-                font-size: 1.2em;
-                margin-bottom: 1.5em;
-            }
-
-            ul {
-                padding: 0;
-                list-style-type: none;
-                -webkit-column-count:2;
-                -moz-column-count: 2;
-                -o-column-count: 2;
-                -ms-column-count: 2;
-                column-count: 2;
-            }
-            .page-content section {
-                margin-bottom: 4.5em;
-            }
-        }
-    </style>
-<style>#forkongithub a{background:#09c;color:#fff;text-decoration:none;text-align:center;padding:5px 40px;font-size:1rem;line-height:2rem;position:relative;transition:0.5s; margin: 0 auto; display: block; max-width: 10em;}
-    #forkongithub a:hover{background:#08b;color:#fff;}
-    @media screen and (min-width:40em){
-        #forkongithub{position:absolute;display:block;top:-20px;right:0;width:200px;overflow:hidden;height:200px; max-width: auto;}
-        #forkongithub a{width:200px;position:absolute;top:60px;right:-60px;transform:rotate(45deg);-webkit-transform:rotate(45deg);box-shadow:4px 4px 10px rgba(0,0,0,0.8);}
-    }</style>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 <canvas style="display:none" id="canvas" width="285" height="285"></canvas>
@@ -150,6 +20,21 @@
     <article class="page-content">
         <section>
             <p>TimeJump seemlessly adds deep linking capabilities to HTML5 <code>audio</code> and <code>video</code> podcasts. It works quietly behind-the-scenes to add a <a href="http://www.w3.org/TR/2012/PR-media-frags-20120315/">standardized API</a> to your episode pages.</p>
+        </section>
+        <section>
+            <h2>See it in action</h2>
+            <audio controls>
+                <source src="https://archive.org/download/wizard-people/wiz1.ogg" type="audio/ogg"></source>
+                <source src="https://archive.org/download/wizard-people/wiz1_64kb.mp3" type="audio/mp3"></source>
+            </audio>
+            <ul>
+                <li><a href="#t=00:04">Title Page (00:04)</a></li>
+                <li><a href="#t=00:11">Chapter 1 (00:11)</a></li>
+                <li><a href="#t=04:07">Chapter 2 (04:07)</a></li>
+                <li><a href="#t=08:12">Chapter 3 (08:12)</a></li>
+                <li><a href="#t=12:18">Chapter 4 (12:18)</a></li>
+                <li><a href="#t=18:25">Chapter 5 (18:25)</a></li>
+            </ul>
         </section>
         <section>
             <h2>How it works</h2>
@@ -178,11 +63,24 @@ http://mypodca.st/first-episode/#t=234</code></pre>
     </article>
 
     <footer class="page-footer" role="content-info">
-    <p>Made with ❤ by <a href="http://paravelinc.com">Paravel</a> &amp; <a href="http://css-tricks.com">Chris Coyier</a></p>
+        <p>Made with ❤ by <a href="http://paravelinc.com">Paravel</a> &amp; <a href="http://css-tricks.com">Chris Coyier</a><br/>
+        <small>Audio: “Wizard People, Dear Reader” (via <a href="https://archive.org/details/wizard-people">Archive.org</a>)</small><br/>
+        <button onclick="danMode();">Enable Dan Benjamin Mode</button>
+        </p>
     <footeR>
 </div>
 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="//rawgithub.com/davatron5000/TimeJump/master/timeJump.js"></script>
 <script type="text/javascript">
+var danMode = function(){
+    document.body.className += ' danmode';
+}
+
+if(window.location.search === "?danmode=true") {
+    danMode();
+}
+
 //////////////////////////////////////////////////////////////////////////////////
 // A demonstration of a Canvas nebula effect
 // (c) 2010 by R Cecco. <http://www.professorcloud.com>
@@ -191,7 +89,6 @@ http://mypodca.st/first-episode/#t=234</code></pre>
 // Please retain this copyright header in all versions of the software if
 // using significant parts of it
 //////////////////////////////////////////////////////////////////////////////////
-
 $(document).ready(function(){
     // shim layer with setTimeout fallback
     window.requestAnimFrame = (function(){
