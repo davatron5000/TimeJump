@@ -65,7 +65,7 @@ http://mypodca.st/first-episode/#t=234</code></pre>
     <footer class="page-footer" role="content-info">
         <p>Made with ❤ by <a href="http://paravelinc.com">Paravel</a> &amp; <a href="http://css-tricks.com">Chris Coyier</a><br/>
         <small>Audio: “Wizard People, Dear Reader” (via <a href="https://archive.org/details/wizard-people">Archive.org</a>)</small><br/>
-        <button onclick="danMode();">Enable Dan Mode</button>
+        <button onclick="danMode();">Toggle Dan Mode</button>
         </p>
     <footeR>
 </div>
@@ -74,7 +74,7 @@ http://mypodca.st/first-episode/#t=234</code></pre>
 <script src="//rawgithub.com/davatron5000/TimeJump/master/timeJump.js"></script>
 <script type="text/javascript">
 var danMode = function(){
-    document.body.className += ' danmode';
+    document.body.classList.toggle('danmode');
 }
 
 if(window.location.search === "?danmode=true") {
