@@ -55,7 +55,11 @@
         timestamp = parseTime(t);
         media = document.querySelector('audio, video');
         if (!!media) {
+            // Preload the media
             media.setAttribute('preload', 'true');
+            // Set the current time. Will update if playing. Will fail if paused.
+            media.currentTime = timestamp;
+            // If the media is able to play, play.
             media.addEventListener('canplay', function () {
                 /* only start the player if it is not already playing */
                 if( !this.paused){
@@ -64,9 +68,6 @@
                 this.currentTime = timestamp;
                 this.play();
             }, false);
-            if(!media.paused) {
-                media.currentTime = timestamp;
-            }
         }
     }
 
