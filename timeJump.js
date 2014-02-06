@@ -71,9 +71,11 @@
     }
 
     if (window.addEventListener) {
+        window.addEventListener("DOMContentLoaded", timeJump, false);
         window.addEventListener("hashchange", timeJump, false);
     }
     else if (window.attachEvent) {
+        window.attachEvent("onload", timeJump);
         window.attachEvent("onhashchange", timeJump);
     }
 }());
